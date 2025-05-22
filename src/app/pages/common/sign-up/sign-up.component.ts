@@ -1,19 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '@core/services/auth.service';
 
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { FormComponent } from '@component/form/form.component';
-import { InputPasswordComponent } from '@component/input-password/input-password.component';
+import { FormComponent } from '../../../shared/components/form/form.component';
+import { InputPasswordComponent } from '../../../shared/components/input-password/input-password.component';
 
 import { Page } from '@constant/page.constant';
+import { QueryUrl } from '@constant/query-url.constant';
 
 @Component({
   selector: 'sign-up-page',
@@ -26,13 +24,19 @@ import { Page } from '@constant/page.constant';
     FormComponent,
     InputPasswordComponent,
   ],
+  providers: [AuthService],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
-  constructor(private readonly notificationService: NzNotificationService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly notificationService: NzNotificationService,
+  ) {}
 
   private readonly formBuilder = inject(NonNullableFormBuilder);
+  private readonly route = inject(ActivatedRoute);
+  private readonly fromPage: string = this.route.snapshot.queryParams[QueryUrl.FromPage] ?? '';
   readonly logInHref = Page.LogIn;
 
   validateForm = this.formBuilder.group({
@@ -42,15 +46,19 @@ export class SignUpComponent {
   });
 
   submitForm() {
-    const { password, repeat_password } = this.validateForm.value;
+    if (this.validateForm.valid) {
+      const { username, password, repeat_password } = this.validateForm.value;
+      if (!username || !password || !repeat_password) return;
 
-    if (password !== repeat_password) {
-      this.notificationService.error(
-        'Password',
-        'Repeat password should match the password!'
+      if (password !== repeat_password) {
+        this.notificationService.error('Password', 'Repeat password should match the password!');
+        return;
+      }
+
+      this.authService.signUp(
+        { username, password },
+        { navigateTo: this.fromPage, notification: this.notificationService },
       );
-    } else {
-      console.log(this.validateForm.value);
     }
   }
 }

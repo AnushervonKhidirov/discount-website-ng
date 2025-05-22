@@ -7,12 +7,7 @@
   >
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
-        <input
-          nz-input
-          type="text"
-          formControlName="username"
-          placeholder="Username"
-        />
+        <input nz-input type="text" formControlName="username" placeholder="Username" />
       </nz-form-control>
     </nz-form-item>
 
@@ -21,14 +16,14 @@
       name="password"
       nzErrorTip="Please input your password!"
     />
+
     <input-password
       [formGroup]="validateForm"
       name="repeat_password"
       nzErrorTip="Please input repeat password!"
+      placeholder="Repeat password"
     />
   </app-form>
 
-  <div class="form-footer">
-    Already have account? <a [routerLink]="logInHref">Log in!</a>
-  </div>
+  <div class="form-footer">Already have account? <a [routerLink]="logInHref">Log in!</a></div>
 </nz-card>
