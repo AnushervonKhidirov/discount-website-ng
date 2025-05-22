@@ -19,7 +19,8 @@
     "module": "ES2022",
     "paths": {
       "@page/*": ["./src/app/pages/*"],
-      "@component/*": ["./src/app/shared/components/*"],
+      "@layout/*": ["./src/app/layout/*"],
+      "@component/*": ["./src/app/shared/component/*"],
       "@constant/*": ["./src/app/shared/constant/*"]
     }
   },
