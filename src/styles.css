@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body app-root {
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas: "main";
+}
+
+body app-root:has(header) {
+  grid-template-areas: "header" "main" ".";
+  grid-template-rows: max-content 1fr 2em;
+  gap: 1rem;
+}
+
+body > *:not(app-root, div, span) {
+  display: none;
+}
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+@media screen and (min-width: 769px) {
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+}
+
+@media screen and (max-width: 425px) {
+}
