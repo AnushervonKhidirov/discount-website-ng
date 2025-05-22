@@ -5,11 +5,11 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { FormComponent } from '@component/form/form.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { FormComponent } from '@component/form/form.component';
 import { InputPasswordComponent } from '@component/input-password/input-password.component';
 
 import { Page } from '@constant/page.constant';
@@ -18,10 +18,10 @@ import { Page } from '@constant/page.constant';
   selector: 'sign-up-page',
   imports: [
     ReactiveFormsModule,
-    FormComponent,
     NzCardModule,
     NzFormModule,
     NzInputModule,
+    FormComponent,
     InputPasswordComponent,
   ],
   templateUrl: './sign-up.component.html',

@@ -5,11 +5,11 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { FormComponent } from '@component/form/form.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { InputPasswordComponent } from '../../../shared/components/input-password/input-password.component';
+import { FormComponent } from '@component/form/form.component';
+import { InputPasswordComponent } from '@component/input-password/input-password.component';
 
 import { Page } from '@constant/page.constant';
 
@@ -17,11 +17,11 @@ import { Page } from '@constant/page.constant';
   selector: 'log-in-page',
   imports: [
     ReactiveFormsModule,
-    InputPasswordComponent,
-    FormComponent,
     NzFormModule,
     NzInputModule,
     NzCardModule,
+    FormComponent,
+    InputPasswordComponent,
   ],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css',
