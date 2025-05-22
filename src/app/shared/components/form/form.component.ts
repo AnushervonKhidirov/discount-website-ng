@@ -9,13 +9,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 @Component({
   selector: 'app-form',
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    NzFormModule,
-    NzButtonModule,
-    NzTypographyModule,
-  ],
+  imports: [ReactiveFormsModule, FormsModule, NzFormModule, NzButtonModule, NzTypographyModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
@@ -29,7 +23,7 @@ export class FormComponent {
     if (this.formGroup().valid) {
       this.submitFn()();
     } else {
-      Object.values(this.formGroup().controls).forEach((control) => {
+      Object.values(this.formGroup().controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });

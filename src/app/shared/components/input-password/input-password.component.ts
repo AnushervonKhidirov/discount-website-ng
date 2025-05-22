@@ -18,6 +18,6 @@ export class InputPasswordComponent {
   passwordVisible = signal(false);
 
   switchVisibility() {
-    this.passwordVisible.update((value) => !value);
+    this.passwordVisible.update(value => !value);
   }
 }
