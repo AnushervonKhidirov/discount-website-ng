@@ -20,8 +20,9 @@
     "paths": {
       "@page/*": ["./src/app/pages/*"],
       "@layout/*": ["./src/app/layout/*"],
-      "@component/*": ["./src/app/shared/component/*"],
-      "@constant/*": ["./src/app/shared/constant/*"]
+      "@component/*": ["./src/app/shared/components/*"],
+      "@constant/*": ["./src/app/shared/constant/*"],
+      "@core/*": ["./src/app/core/*"]
     }
   },
   "angularCompilerOptions": {
