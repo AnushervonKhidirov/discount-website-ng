@@ -1,0 +1,15 @@
+:host {
+  display: grid;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+}
+
+.card {
+  width: 40vw;
+  max-width: 400px;
+}
+
+.form-footer {
+  margin-top: 1em;
+}

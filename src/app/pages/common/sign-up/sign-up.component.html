@@ -1,0 +1,34 @@
+<nz-card class="card">
+  <app-form
+    [formGroup]="validateForm"
+    headline="Sign Up"
+    [submitFn]="submitForm.bind(this)"
+    btnName="Sign up"
+  >
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <input
+          nz-input
+          type="text"
+          formControlName="username"
+          placeholder="Username"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <input-password
+      [formGroup]="validateForm"
+      name="password"
+      nzErrorTip="Please input your password!"
+    />
+    <input-password
+      [formGroup]="validateForm"
+      name="repeat_password"
+      nzErrorTip="Please input repeat password!"
+    />
+  </app-form>
+
+  <div class="form-footer">
+    Already have account? <a [href]="logInHref">Log in!</a>
+  </div>
+</nz-card>
