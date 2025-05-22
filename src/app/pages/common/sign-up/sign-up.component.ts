@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -17,6 +18,7 @@ import { Page } from '@constant/page.constant';
 @Component({
   selector: 'sign-up-page',
   imports: [
+    RouterLink,
     ReactiveFormsModule,
     NzCardModule,
     NzFormModule,
