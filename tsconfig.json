@@ -22,6 +22,7 @@
       "@layout/*": ["./src/app/layout/*"],
       "@component/*": ["./src/app/shared/components/*"],
       "@constant/*": ["./src/app/shared/constant/*"],
+      "@helper/*": ["./src/app/shared/helpers/*"],
       "@core/*": ["./src/app/core/*"]
     }
   },
