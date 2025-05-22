@@ -15,6 +15,7 @@ export class InputPasswordComponent {
   formGroup = input.required<FormGroup>();
   name = input.required<string>();
   nzErrorTip = input.required<string>();
+  placeholder = input('Password');
   passwordVisible = signal(false);
 
   switchVisibility() {
