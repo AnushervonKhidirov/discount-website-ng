@@ -1,0 +1,15 @@
+<button nz-button nz-dropdown [nzDropdownMenu]="menu">
+  <nz-avatar nzIcon="user" nzShape="circle" class="avatart" />
+  <div class="username">{{ username }}</div>
+  <div class="role">{{ role }}</div>
+</button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    @for (menuItem of profileMenu; track menuItem.href) {
+    <li nz-menu-item>
+      <a [routerLink]="menuItem.href">{{ menuItem.title }}</a>
+    </li>
+    }
+  </ul>
+</nz-dropdown-menu>

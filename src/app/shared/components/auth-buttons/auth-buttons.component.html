@@ -1,0 +1,6 @@
+@if(user) {
+<app-profile-button [userData]="user" />
+} @else {
+<button nz-button nzType="default" (click)="navigateToLogIn()">Log in</button>
+<button nz-button nzType="primary" (click)="navigateToSignUp()">Sign up</button>
+}
