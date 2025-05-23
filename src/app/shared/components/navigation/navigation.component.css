@@ -1,0 +1,7 @@
+:host ul {
+  border: none;
+}
+
+li::after {
+  pointer-events: none;
+}

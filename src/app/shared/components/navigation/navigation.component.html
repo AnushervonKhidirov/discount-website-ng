@@ -1,0 +1,7 @@
+<ul nz-menu nzMode="horizontal">
+  @for (menuItem of menuItems(); track $index) {
+  <li nz-menu-item nzMatchRouter>
+    <a [routerLink]="menuItem.href">{{ menuItem.title }}</a>
+  </li>
+  }
+</ul>
