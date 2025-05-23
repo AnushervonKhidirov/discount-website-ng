@@ -1,0 +1,13 @@
+:host {
+  display: grid;
+  width: max-content;
+  height: 100%;
+  aspect-ratio: 2/1;
+  align-items: center;
+  background: #8b8b8b;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+}
