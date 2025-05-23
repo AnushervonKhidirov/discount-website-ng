@@ -1,9 +1,9 @@
-.content {
+:host {
   width: 90vw;
   max-width: 1400px;
   margin: auto;
 }
 
-.content.full_height {
+:host.full_height {
   height: 100%;
 }
