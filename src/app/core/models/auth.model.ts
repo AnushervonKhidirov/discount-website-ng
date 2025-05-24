@@ -5,7 +5,12 @@ export type SignUpModel = {
 
 export type LogInModel = SignUpModel;
 
-export type TokenModel = {
+export type AccessTokenModel = {
   accessToken: string;
+};
+
+export type RefreshTokenModel = {
   refreshToken: string;
 };
+
+export type TokenModel = AccessTokenModel & RefreshTokenModel;

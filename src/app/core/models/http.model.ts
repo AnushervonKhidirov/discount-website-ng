@@ -17,7 +17,7 @@ export class HttpExceptionModel {
 
   getMessages() {
     if (Array.isArray(this.message)) return this.message.join(', ');
-    return this.message ?? '';
+    return this.message && this.getError() !== this.message ? this.message : '';
   }
 
   getError() {
