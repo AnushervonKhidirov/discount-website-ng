@@ -1,5 +1,6 @@
-import type { LogInModel, TokenModel } from '../../models/auth.model';
+import type { LogInModel, TokenModel, RefreshTokenModel } from '@core/models/auth.model';
 
+import { tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -26,24 +27,43 @@ export class AuthService {
   ) {}
 
   logIn(body: LogInModel, { notification, navigateTo = '' }: AdditionalParams) {
-    this.http.post<TokenModel>(Endpoint.SignIn, body).subscribe({
-      next: response => {
-        this.cookieService.set(CookieKey.AccessToken, response.accessToken);
-        this.cookieService.set(CookieKey.RefreshToken, response.refreshToken);
-        this.router.navigateByUrl(navigateTo);
-      },
-      error: err => showHttpErrorMessage(err, notification),
-    });
+    return this.http.post<TokenModel>(Endpoint.SignIn, body).pipe(
+      tap({
+        next: ({ accessToken, refreshToken }) => {
+          this.cookieService.set(CookieKey.AccessToken, accessToken);
+          this.cookieService.set(CookieKey.RefreshToken, refreshToken);
+          this.router.navigateByUrl(navigateTo);
+        },
+        error: err => showHttpErrorMessage(err, notification),
+      }),
+    );
   }
 
   signUp(body: LogInModel, { notification, navigateTo = '' }: AdditionalParams) {
-    this.http.post<TokenModel>(Endpoint.SignUp, body).subscribe({
-      next: response => {
-        this.cookieService.set(CookieKey.AccessToken, response.accessToken);
-        this.cookieService.set(CookieKey.RefreshToken, response.refreshToken);
-        this.router.navigateByUrl(navigateTo);
-      },
-      error: err => showHttpErrorMessage(err, notification),
-    });
+    return this.http.post<TokenModel>(Endpoint.SignUp, body).pipe(
+      tap({
+        next: ({ accessToken, refreshToken }) => {
+          this.cookieService.set(CookieKey.AccessToken, accessToken);
+          this.cookieService.set(CookieKey.RefreshToken, refreshToken);
+          this.router.navigateByUrl(navigateTo);
+        },
+        error: err => showHttpErrorMessage(err, notification),
+      }),
+    );
+  }
+
+  refreshToken(body: RefreshTokenModel) {
+    return this.http.post<TokenModel>(Endpoint.RefreshToken, body).pipe(
+      tap({
+        next: ({ accessToken, refreshToken }) => {
+          this.cookieService.set(CookieKey.AccessToken, accessToken);
+          this.cookieService.set(CookieKey.RefreshToken, refreshToken);
+        },
+        error: () => {
+          this.cookieService.delete(CookieKey.AccessToken);
+          this.cookieService.delete(CookieKey.RefreshToken);
+        },
+      }),
+    );
   }
 }
