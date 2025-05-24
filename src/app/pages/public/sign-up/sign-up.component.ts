@@ -55,10 +55,12 @@ export class SignUpComponent {
         return;
       }
 
-      this.authService.signUp(
-        { username, password },
-        { navigateTo: this.fromPage, notification: this.notificationService },
-      );
+      this.authService
+        .signUp(
+          { username, password },
+          { navigateTo: this.fromPage, notification: this.notificationService },
+        )
+        .subscribe();
     }
   }
 }

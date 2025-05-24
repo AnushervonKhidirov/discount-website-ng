@@ -49,10 +49,12 @@ export class LogInComponent {
       const { username, password } = this.validateForm.value;
       if (!username || !password) return;
 
-      this.authService.logIn(
-        { username, password },
-        { navigateTo: this.fromPage, notification: this.notification },
-      );
+      this.authService
+        .logIn(
+          { username, password },
+          { navigateTo: this.fromPage, notification: this.notification },
+        )
+        .subscribe();
     }
   }
 }
