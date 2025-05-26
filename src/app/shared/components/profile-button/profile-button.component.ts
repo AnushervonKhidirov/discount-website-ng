@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { NzDropDownModule, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+
 import { Page } from '@constant/page.constant';
 
 @Component({
@@ -15,11 +16,7 @@ import { Page } from '@constant/page.constant';
 })
 export class ProfileButtonComponent {
   readonly userData = input.required<UserModel>();
-  readonly user = this.userData();
-
-  readonly username = this.user.firstName ?? this.user.username;
-  readonly role = this.user.role.replaceAll('_', ' ').toLowerCase();
-  readonly isCompanyOwner = !!this.user.companies && this.user.companies.length > 0;
+  user: UserModel | null = null;
 
   readonly profileMenu = [
     {
@@ -35,5 +32,24 @@ export class ProfileButtonComponent {
       title: 'Create company',
       href: Page.CreateCompany,
     },
-  ].filter(item => (this.isCompanyOwner ? !item.ownerOnly : item));
+  ];
+
+  ngOnInit() {
+    this.user = this.userData();
+  }
+
+  getUsername() {
+    if (!this.user) return '';
+    return this.user.firstName ?? this.user.username;
+  }
+
+  getRole() {
+    if (!this.user) return '';
+    return this.user.role.replaceAll('_', ' ').toLowerCase();
+  }
+
+  isCompanyOwner() {
+    if (!this.user) return false;
+    return !!this.user.companies && this.user.companies.length > 0;
+  }
 }

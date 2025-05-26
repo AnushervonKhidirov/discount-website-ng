@@ -1,13 +1,15 @@
 import type { UserModel } from '@core/models/user.model';
 
-import { Component, input } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { ProfileButtonComponent } from '@component/profile-button/profile-button.component';
 
 import { Page } from '@constant/page.constant';
 import { QueryUrl } from '@constant/query-url.constant';
+import { selectUser } from '@core/store/user/user.selectors';
 
 @Component({
   selector: 'app-auth-buttons',
@@ -20,9 +22,14 @@ export class AuthButtonsComponent {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly location: Location,
-  ) {}
-  readonly userData = input<UserModel>();
-  readonly user = this.userData();
+    private readonly store: Store,
+  ) {
+    this.store.select(selectUser).subscribe(({ user }) => {
+      this.userSignal.set(user);
+    });
+  }
+
+  readonly userSignal = signal<UserModel | null>(null);
 
   navigateToLogIn() {
     this.router.navigate([Page.LogIn], {
