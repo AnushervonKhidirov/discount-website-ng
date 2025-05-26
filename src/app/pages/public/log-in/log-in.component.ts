@@ -1,7 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { AuthService } from '@core/services/auth/auth.service';
+import { UserService } from '@core/services/user/user.service';
+import { setUserInfo } from '@core/store/user/user.actions';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -31,7 +34,10 @@ import { QueryUrl } from '@constant/query-url.constant';
 export class LogInComponent {
   constructor(
     private readonly authService: AuthService,
+    private readonly userService: UserService,
     private readonly notification: NzNotificationService,
+    private readonly router: Router,
+    private readonly store: Store,
   ) {}
 
   private readonly formBuilder = inject(NonNullableFormBuilder);
@@ -49,12 +55,16 @@ export class LogInComponent {
       const { username, password } = this.validateForm.value;
       if (!username || !password) return;
 
-      this.authService
-        .logIn(
-          { username, password },
-          { navigateTo: this.fromPage, notification: this.notification },
-        )
-        .subscribe();
+      this.authService.logIn({ username, password }, this.notification).subscribe(() => {
+        this.getUserInfo();
+      });
     }
+  }
+
+  getUserInfo() {
+    this.userService.getMyInfo(this.notification).subscribe(user => {
+      this.store.dispatch(setUserInfo(user));
+      this.router.navigateByUrl(this.fromPage);
+    });
   }
 }

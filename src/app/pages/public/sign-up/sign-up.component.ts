@@ -1,7 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { AuthService } from '@core/services/auth/auth.service';
+import { UserService } from '@core/services/user/user.service';
+import { setUserInfo } from '@core/store/user/user.actions';
 
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -31,7 +34,10 @@ import { QueryUrl } from '@constant/query-url.constant';
 export class SignUpComponent {
   constructor(
     private readonly authService: AuthService,
-    private readonly notificationService: NzNotificationService,
+    private readonly userService: UserService,
+    private readonly notification: NzNotificationService,
+    private readonly router: Router,
+    private readonly store: Store,
   ) {}
 
   private readonly formBuilder = inject(NonNullableFormBuilder);
@@ -51,16 +57,20 @@ export class SignUpComponent {
       if (!username || !password || !repeat_password) return;
 
       if (password !== repeat_password) {
-        this.notificationService.error('Password', 'Repeat password should match the password!');
+        this.notification.error('Password', 'Repeat password should match the password!');
         return;
       }
 
-      this.authService
-        .signUp(
-          { username, password },
-          { navigateTo: this.fromPage, notification: this.notificationService },
-        )
-        .subscribe();
+      this.authService.signUp({ username, password }, this.notification).subscribe(() => {
+        this.getUserInfo();
+      });
     }
+  }
+
+  getUserInfo() {
+    this.userService.getMyInfo(this.notification).subscribe(user => {
+      this.store.dispatch(setUserInfo(user));
+      this.router.navigateByUrl(this.fromPage);
+    });
   }
 }

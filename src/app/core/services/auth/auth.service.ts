@@ -2,7 +2,6 @@ import type { LogInModel, TokenModel, RefreshTokenModel } from '@core/models/aut
 
 import { tap } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Endpoint } from '@constant/endpoint.constant';
@@ -11,11 +10,6 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CookieKey } from '@constant/cookie.constant';
 import { showHttpErrorMessage } from '@helper/http-err-message.helper';
 
-type AdditionalParams = Partial<{
-  notification: NzNotificationService;
-  navigateTo: string;
-}>;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -23,29 +17,26 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private readonly cookieService: CookieService,
-    private readonly router: Router,
   ) {}
 
-  logIn(body: LogInModel, { notification, navigateTo = '' }: AdditionalParams) {
+  logIn(body: LogInModel, notification: NzNotificationService) {
     return this.http.post<TokenModel>(Endpoint.SignIn, body).pipe(
       tap({
         next: ({ accessToken, refreshToken }) => {
           this.cookieService.set(CookieKey.AccessToken, accessToken);
           this.cookieService.set(CookieKey.RefreshToken, refreshToken);
-          this.router.navigateByUrl(navigateTo);
         },
         error: err => showHttpErrorMessage(err, notification),
       }),
     );
   }
 
-  signUp(body: LogInModel, { notification, navigateTo = '' }: AdditionalParams) {
+  signUp(body: LogInModel, notification: NzNotificationService) {
     return this.http.post<TokenModel>(Endpoint.SignUp, body).pipe(
       tap({
         next: ({ accessToken, refreshToken }) => {
           this.cookieService.set(CookieKey.AccessToken, accessToken);
           this.cookieService.set(CookieKey.RefreshToken, refreshToken);
-          this.router.navigateByUrl(navigateTo);
         },
         error: err => showHttpErrorMessage(err, notification),
       }),
