@@ -9,7 +9,8 @@ import en from '@angular/common/locales/en';
 import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { routes } from './app.routes';
 
-import { AuthInterceptor } from '@core/interceptors/auth/auth.interceptor';
+import { AuthInterceptor } from '@core/interceptors/auth.interceptor';
+import { EndpointIdInterceptor } from '@core/interceptors/endpoint-id.interceptor';
 import { userReducer } from '@core/store/user/user.reducer';
 
 registerLocaleData(en);
@@ -19,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideNzI18n(en_US),
-    provideHttpClient(withFetch(), withInterceptors([AuthInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([AuthInterceptor, EndpointIdInterceptor])),
     provideAnimationsAsync(),
     provideStore({ user: userReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
