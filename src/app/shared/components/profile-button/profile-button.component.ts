@@ -17,8 +17,7 @@ import { Page } from '@constant/page.constant';
 export class ProfileButtonComponent {
   readonly userData = input.required<UserModel>();
   user: UserModel | null = null;
-
-  readonly profileMenu = [
+  profileMenu = [
     {
       title: 'Profile',
       href: Page.Profile,
@@ -36,6 +35,10 @@ export class ProfileButtonComponent {
 
   ngOnInit() {
     this.user = this.userData();
+    this.profileMenu = this.profileMenu.filter(item => {
+      console.log(item, this.user);
+      return !this.isCompanyOwner() ? !item.ownerOnly : item;
+    });
   }
 
   getUsername() {
