@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Store } from '@ngrx/store';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { UserService } from '@core/services/user/user.service';
+import { UserService } from '@core/services/user.service';
 import { setUserInfo } from '@core/store/user/user.actions';
 import { selectUser } from '@core/store/user/user.selectors';
 import { CookieKey } from '@constant/cookie.constant';

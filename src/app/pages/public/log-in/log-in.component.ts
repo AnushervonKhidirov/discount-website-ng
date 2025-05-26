@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AuthService } from '@core/services/auth/auth.service';
-import { UserService } from '@core/services/user/user.service';
+import { AuthService } from '@core/services/auth.service';
+import { UserService } from '@core/services/user.service';
 import { setUserInfo } from '@core/store/user/user.actions';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
