@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, throwError, switchMap } from 'rxjs';
-import { AuthService } from '@core/services/auth/auth.service';
+import { AuthService } from '@core/services/auth.service';
 import { CookieKey } from '@constant/cookie.constant';
 import { Endpoint } from '@constant/endpoint.constant';
 
