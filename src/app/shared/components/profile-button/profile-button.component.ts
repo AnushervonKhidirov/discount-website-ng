@@ -36,7 +36,6 @@ export class ProfileButtonComponent {
   ngOnInit() {
     this.user = this.userData();
     this.profileMenu = this.profileMenu.filter(item => {
-      console.log(item, this.user);
       return !this.isCompanyOwner() ? !item.ownerOnly : item;
     });
   }
