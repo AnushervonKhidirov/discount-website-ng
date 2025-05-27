@@ -11,6 +11,7 @@ import { routes } from './app.routes';
 
 import { AuthInterceptor } from '@core/interceptors/auth.interceptor';
 import { EndpointIdInterceptor } from '@core/interceptors/endpoint-id.interceptor';
+import { CacheInterceptor } from '@core/interceptors/cache.interceptor';
 import { userReducer } from '@core/store/user/user.reducer';
 
 registerLocaleData(en);
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideNzI18n(en_US),
-    provideHttpClient(withFetch(), withInterceptors([AuthInterceptor, EndpointIdInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([AuthInterceptor, EndpointIdInterceptor, CacheInterceptor])),
     provideAnimationsAsync(),
     provideStore({ user: userReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
