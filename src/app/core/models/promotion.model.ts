@@ -29,16 +29,3 @@ export enum PromotionType {
 export type DiscountModel = Omit<PromotionModel, 'bankId' | 'promoCode'>;
 export type CashbackModel = Omit<PromotionModel, 'promoCode'> & { bankId: number };
 export type PromoCodeModel = Omit<PromotionModel, 'bankId'> & { promoCode: string };
-type UnknownPromotionType = DiscountModel | CashbackModel | PromoCodeModel;
-
-export function isDiscount(promotion: UnknownPromotionType): promotion is DiscountModel {
-  return promotion.type === PromotionType.DISCOUNT;
-}
-
-export function isCashback(promotion: UnknownPromotionType): promotion is CashbackModel {
-  return promotion.type === PromotionType.CASHBACK;
-}
-
-export function isPromoCode(promotion: UnknownPromotionType): promotion is PromoCodeModel {
-  return promotion.type === PromotionType.PROMO_CODE;
-}
