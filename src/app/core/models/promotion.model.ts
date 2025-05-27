@@ -15,9 +15,9 @@ export type PromotionModel = {
   companyId: number;
   company: CompanyModel;
   stores: StoreModel[];
-  bankId: number | null;
-  bank: BankModel | null;
-  promoCode: string | null;
+  bankId?: number | null;
+  bank?: BankModel | null;
+  promoCode?: string | null;
 };
 
 export enum PromotionType {
@@ -26,6 +26,6 @@ export enum PromotionType {
   PROMO_CODE = 'PROMO_CODE',
 }
 
-export type DiscountModel = Omit<PromotionModel, 'bankId' | 'promoCode'>;
-export type CashbackModel = Omit<PromotionModel, 'promoCode'> & { bankId: number };
+export type DiscountModel = Omit<PromotionModel, 'bankId' | 'bank' | 'promoCode'>;
+export type CashbackModel = Omit<PromotionModel, 'promoCode'> & { bankId: number; bank: BankModel };
 export type PromoCodeModel = Omit<PromotionModel, 'bankId'> & { promoCode: string };
