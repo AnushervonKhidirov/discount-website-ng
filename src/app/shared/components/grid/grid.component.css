@@ -1,0 +1,57 @@
+:host {
+  display: grid;
+  grid-auto-rows: max-content;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: 1em;
+}
+
+@media screen and (min-width: 769px) {
+  :host[data-size='xSmall'] {
+    --columns: 5;
+  }
+
+  :host[data-size='small'] {
+    --columns: 4;
+  }
+
+  :host[data-size='medium'] {
+    --columns: 3;
+  }
+
+  :host[data-size='large'] {
+    --columns: 2;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  :host[data-size='xSmall'] {
+    --columns: 4;
+  }
+
+  :host[data-size='small'] {
+    --columns: 3;
+  }
+
+  :host[data-size='medium'] {
+    --columns: 2;
+  }
+
+  :host[data-size='large'] {
+    --columns: 1;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  :host[data-size='xSmall'] {
+    --columns: 3;
+  }
+
+  :host[data-size='small'] {
+    --columns: 2;
+  }
+
+  :host[data-size='medium'],
+  :host[data-size='large'] {
+    --columns: 1;
+  }
+}
