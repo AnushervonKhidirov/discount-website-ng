@@ -33,6 +33,7 @@
 .promo-value {
   font-size: 1.3em;
   font-weight: 700;
+  text-transform: uppercase;
   opacity: 0;
   transform: translateX(100%);
   animation: fadeInLeft 0.3s ease-out 0.5s forwards;

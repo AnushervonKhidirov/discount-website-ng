@@ -1,18 +1,38 @@
-@if(promotion().company.logoUrl) {
+@if(promotion().company.logoUrl || promotion().bank?.logoUrl) {
 <div class="logos">
-  <img [src]="promotion().company.logoUrl | uploadUrl" [alt]="promotion().company.name" />
+  @if (promotion().company.logoUrl) {
+  <img [src]="promotion().company.logoUrl! | uploadUrl" [alt]="promotion().company.name" />
+  }
+  
+  @if (promotion().bank?.logoUrl) {
+  <img [src]="promotion().bank!.logoUrl! | uploadUrl" [alt]="promotion().bank!.name" />
+  }
 </div>
 
 <nz-divider />
 }
 
 <h4 nz-typography>
-  Скидка до {{ promotion().size }}% по промокоду<br />
-  в {{ promotion().company.name }}
+  @if (isDiscount(promotion())) {
+    Скидка до {{ promotion().size }}% в {{ promotion().company.name }}
+  }
+
+  @if (isCashback(promotion())) {
+    Кэшбек {{ promotion().size }}% в {{ promotion().company.name }}
+  }
+
+  @if (isPromoCode(promotion())) {
+    Скидка до {{ promotion().size }}% по промокоду<br />
+    в {{ promotion().company.name }}
+  }
 </h4>
 
 <div class="company">Магазин: {{ promotion().company.name }}</div>
 <div class="category">Категория: {{ promotion().company.category.value }}</div>
+
+@if (isCashback(promotion())) {
+<div class="bank">Банк: {{ promotion().bank!.name }}</div>
+}
 
 <nz-divider />
 
@@ -28,6 +48,7 @@
 <nz-divider />
 
 <nz-space nzSize="middle" nzDirection="vertical">
+  @if (isPromoCode(promotion())) {
   <div class="promo-btn-value" *nzSpaceItem>
     <button nz-button nzType="primary" (click)="showPromoCode()">Показать промокод!</button>
 
@@ -35,6 +56,7 @@
     <span nz-typography class="promo-value">{{ promotion().promoCode }}</span>
     }
   </div>
+  }
 
   <app-rating
     *nzSpaceItem
