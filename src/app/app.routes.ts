@@ -10,7 +10,17 @@ export const routes: Routes = [
   {
     path: '',
     component: HeaderComponent,
-    children: [{ path: 'promotions', component: PromotionComponent }],
+    children: [
+      {
+        matcher: url => {
+          if (url.length === 0 && url[0].path !== 'promotions') return null;
+          const type = url[1];
+          const posParams = type ? { type } : undefined;
+          return { consumed: url, posParams };
+        },
+        component: PromotionComponent,
+      },
+    ],
   },
   { path: 'log-in', component: LogInComponent },
   { path: 'sign-up', component: SignUpComponent },
