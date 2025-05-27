@@ -1,0 +1,51 @@
+:host {
+  display: grid;
+  overflow: hidden;
+}
+
+.tag {
+  justify-self: self-end;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.logos {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-auto-rows: 2.5em;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  margin-top: 1.5em;
+}
+
+.logos > img {
+  height: 100%;
+}
+
+.promo-btn-value {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.promo-value {
+  font-size: 1.3em;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: fadeInLeft 0.3s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

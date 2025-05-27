@@ -1,0 +1,23 @@
+:host {
+  display: grid;
+}
+
+.tag {
+  justify-self: self-end;
+  text-transform: capitalize;
+  margin: 0 0 0.5em 0;
+}
+
+.logos {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-auto-rows: 2.5em;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  margin-top: 1.5em;
+}
+
+.logos > img {
+  height: 100%;
+}
