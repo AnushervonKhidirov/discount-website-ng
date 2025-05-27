@@ -15,8 +15,17 @@
   width: 100%;
   grid-auto-rows: 2.5em;
   grid-template-columns: max-content max-content;
+  grid-template-areas: 'company_logo bank_logo';
   justify-content: space-between;
   margin-top: 1.5em;
+}
+
+.company-logo {
+  grid-area: company_logo;
+}
+
+.bank-logo {
+  grid-area: bank_logo;
 }
 
 .logos > img {

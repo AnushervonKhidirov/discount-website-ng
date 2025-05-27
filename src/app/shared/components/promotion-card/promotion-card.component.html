@@ -1,11 +1,11 @@
 @if(promotion().company.logoUrl || promotion().bank?.logoUrl) {
 <div class="logos">
   @if (promotion().company.logoUrl) {
-  <img [src]="promotion().company.logoUrl! | uploadUrl" [alt]="promotion().company.name" />
+  <img [src]="promotion().company.logoUrl! | uploadUrl" [alt]="promotion().company.name" class="company-logo" />
   }
   
   @if (promotion().bank?.logoUrl) {
-  <img [src]="promotion().bank!.logoUrl! | uploadUrl" [alt]="promotion().bank!.name" />
+  <img [src]="promotion().bank!.logoUrl! | uploadUrl" [alt]="promotion().bank!.name" class="bank-logo" />
   }
 </div>
 
