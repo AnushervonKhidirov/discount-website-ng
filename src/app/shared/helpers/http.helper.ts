@@ -21,12 +21,19 @@ export function convertFindParams<T>(
 ): Record<string, string | number | boolean | readonly (string | number | boolean)[]> | undefined {
   if (!params) return;
 
-  const httpParams = {
+  const httpParams: { [key: string]: unknown } = {
     ...params,
     ...params.where,
   };
 
-  delete httpParams.where;
+  delete httpParams['where'];
 
-  return httpParams as any;
+  const filteredParams: { [key: string]: unknown } = {};
+
+  for (const param in httpParams) {
+    if (httpParams[param] === undefined || httpParams[param] === null) continue;
+    filteredParams[param] = httpParams[param];
+  }
+
+  return filteredParams as any;
 }
