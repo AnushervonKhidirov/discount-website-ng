@@ -7,8 +7,6 @@ export type UserModel = {
   lastName: string | null;
   role: Role;
   archived: boolean;
-  createdAt: Date;
-  updatedAt: Date;
   companies: CompanyModel[] | null;
 };
 

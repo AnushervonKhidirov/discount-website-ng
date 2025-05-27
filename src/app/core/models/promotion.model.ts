@@ -5,8 +5,6 @@ import type { BankModel } from './bank.model';
 export type PromotionModel = {
   id: number;
   archived: boolean;
-  createdAt: Date;
-  updatedAt: Date;
   type: PromotionType;
   size: number;
   message: string | null;

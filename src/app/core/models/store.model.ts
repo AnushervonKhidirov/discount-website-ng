@@ -5,10 +5,8 @@ export type StoreModel = {
   closeAt: string;
   companyId: number;
   countryId: number;
-  createdAt: Date;
   id: number;
   latitude: string;
   longitude: string;
   openAt: string;
-  updatedAt: Date;
 };

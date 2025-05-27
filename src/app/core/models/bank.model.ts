@@ -3,8 +3,6 @@ export type BankModel = {
   name: string;
   logoUrl: string | null;
   archived: boolean;
-  createdAt: Date;
-  updatedAt: Date;
 };
 
 export type CreateBankData = Pick<BankModel, 'name'>;

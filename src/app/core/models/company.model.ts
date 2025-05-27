@@ -9,11 +9,11 @@ export type CompanyModel = {
   archived: boolean;
   verified: boolean;
   categoryId: number;
-  createdAt: Date;
-  updatedAt: Date;
   userId: number;
-  countries?: CountryModel[];
-  category?: CategoryModel;
+  rating: number;
+  review: number;
+  category: CategoryModel;
+  countries: CountryModel[];
 };
 
 export type CreateCompanyModel = Pick<CompanyModel, 'name' | 'about' | 'categoryId'> & {
