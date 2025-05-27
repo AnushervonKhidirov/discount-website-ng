@@ -18,10 +18,6 @@ export class CompanyService {
   get(id: number, notification?: NzNotificationService) {
     return this.http.get<CompanyModel>(Endpoint.Company, { params: { id } }).pipe(
       tap({
-        next: company => {
-          company.createdAt = new Date(company.createdAt);
-          company.updatedAt = new Date(company.updatedAt);
-        },
         error: err => showHttpErrorMessage(err, notification),
       }),
     );
@@ -30,12 +26,6 @@ export class CompanyService {
   getAll(notification?: NzNotificationService) {
     return this.http.get<CompanyModel[]>(Endpoint.Companies).pipe(
       tap({
-        next: companies => {
-          companies.forEach(company => {
-            company.createdAt = new Date(company.createdAt);
-            company.updatedAt = new Date(company.updatedAt);
-          });
-        },
         error: err => showHttpErrorMessage(err, notification),
       }),
     );
@@ -44,10 +34,6 @@ export class CompanyService {
   create(createCompanyModel: CreateCompanyModel, notification?: NzNotificationService) {
     return this.http.post<CompanyModel>(Endpoint.Companies, createCompanyModel).pipe(
       tap({
-        next: company => {
-          company.createdAt = new Date(company.createdAt);
-          company.updatedAt = new Date(company.updatedAt);
-        },
         error: err => showHttpErrorMessage(err, notification),
       }),
     );
@@ -58,10 +44,6 @@ export class CompanyService {
       .patch<CompanyModel>(Endpoint.Company, updateCompanyModel, { params: { id } })
       .pipe(
         tap({
-          next: company => {
-            company.createdAt = new Date(company.createdAt);
-            company.updatedAt = new Date(company.updatedAt);
-          },
           error: err => showHttpErrorMessage(err, notification),
         }),
       );
@@ -70,10 +52,6 @@ export class CompanyService {
   archive(id: number, notification?: NzNotificationService) {
     return this.http.patch<CompanyModel>(Endpoint.CompanyArchive, { params: { id } }).pipe(
       tap({
-        next: company => {
-          company.createdAt = new Date(company.createdAt);
-          company.updatedAt = new Date(company.updatedAt);
-        },
         error: err => showHttpErrorMessage(err, notification),
       }),
     );
@@ -86,10 +64,6 @@ export class CompanyService {
       .post<CompanyModel>(Endpoint.UploadCompanyLogo, formData, { params: { id } })
       .pipe(
         tap({
-          next: company => {
-            company.createdAt = new Date(company.createdAt);
-            company.updatedAt = new Date(company.updatedAt);
-          },
           error: err => showHttpErrorMessage(err, notification),
         }),
       );

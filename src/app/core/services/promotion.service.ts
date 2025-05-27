@@ -33,35 +33,10 @@ export class PromotionService {
   }
 
   private convertDates(promotion: PromotionModel): PromotionModel {
-    const company = {
-      ...promotion.company,
-      createdAt: new Date(promotion.company.createdAt),
-      updatedAt: new Date(promotion.company.updatedAt),
-    };
-
-    const stores = promotion.stores.map(store => ({
-      ...store,
-      createdAt: new Date(store.createdAt),
-      updatedAt: new Date(store.updatedAt),
-    }));
-
-    const bank = promotion.bank
-      ? {
-          ...promotion.bank,
-          createdAt: new Date(promotion.bank.createdAt),
-          updatedAt: new Date(promotion.bank.updatedAt),
-        }
-      : null;
-
     return {
       ...promotion,
       startAt: new Date(promotion.startAt),
       endAt: new Date(promotion.endAt),
-      createdAt: new Date(promotion.createdAt),
-      updatedAt: new Date(promotion.updatedAt),
-      company,
-      stores,
-      bank,
     };
   }
 }
