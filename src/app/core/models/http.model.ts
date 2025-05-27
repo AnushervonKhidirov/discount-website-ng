@@ -1,3 +1,10 @@
+export type LimitParams = {
+  take: number;
+  skip: number;
+};
+
+export type FindParams<T> = Partial<{ where: Partial<T> } & LimitParams>;
+
 export type HttpExceptionInstance = {
   statusCode: number;
   message: string | string[];
