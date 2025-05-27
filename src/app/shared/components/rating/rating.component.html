@@ -1,0 +1,8 @@
+@if(message()) {
+<div class="message">{{ message() }}</div>
+}
+
+<div class="stars-wrapper">
+  <nz-rate class="stars" [(ngModel)]="stars" [disabled]="disabled()" [nzAllowHalf]="true" />
+  <div class="reviews">({{ reviews() }})</div>
+</div>
