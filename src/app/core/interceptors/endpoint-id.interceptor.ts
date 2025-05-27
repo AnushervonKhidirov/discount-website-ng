@@ -1,7 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const EndpointIdInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.params.has('id')) return next(req);
+  const shouldUpdate = req.urlWithParams.includes(':id') && req.params.has('id');
+  if (!shouldUpdate) return next(req);
 
   const id = req.params.get('id')!;
   const reqWithId = req.clone({
