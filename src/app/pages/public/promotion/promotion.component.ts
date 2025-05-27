@@ -51,12 +51,13 @@ export class PromotionComponent {
   selectedIndex: number = 0;
 
   ngOnInit() {
-    this.getPromotions();
     const promotionType: string = this.route.snapshot.params['type'];
+    if (!promotionType) return this.getPromotions();
 
     this.tabs.forEach((tab, index) => {
       if (tab.href.includes(promotionType)) {
         this.selectedIndex = index;
+        this.getPromotions(tab.type);
       }
     });
   }
