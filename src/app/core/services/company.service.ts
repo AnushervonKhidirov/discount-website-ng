@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Endpoint } from '@constant/endpoint.constant';
 import { tap } from 'rxjs';
-import { showHttpErrorMessage } from '@helper/http-err-message.helper';
+import { showHttpErrorMessage } from '@helper/http.helper';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {

@@ -8,7 +8,7 @@ import { Endpoint } from '@constant/endpoint.constant';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 import { CookieKey } from '@constant/cookie.constant';
-import { showHttpErrorMessage } from '@helper/http-err-message.helper';
+import { showHttpErrorMessage } from '@helper/http.helper';
 
 @Injectable({
   providedIn: 'root',
