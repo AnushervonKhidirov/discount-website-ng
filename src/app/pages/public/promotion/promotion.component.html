@@ -1,0 +1,17 @@
+<app-grid>
+  @for (promotion of promotions; track `promotion-${promotion.id}`) {
+  <nz-card>
+    @if(isCashback(promotion)) {
+    <cashback-card [promotion]="promotion" />
+    }
+    
+    @if(isDiscount(promotion)) {
+    <discount-card [promotion]="promotion" />
+    }
+    
+    @if(isPromoCode(promotion)) {
+    <promo-code-card [promotion]="promotion" />
+    }
+  </nz-card>
+  }
+</app-grid>
