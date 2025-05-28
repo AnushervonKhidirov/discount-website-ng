@@ -6,7 +6,7 @@
 
 <promotion-filter [promotionType]="tabs[selectedTabIndex].type" />
 
-<app-grid>
+<app-grid className="promotion-cards-wrapper">
   @for (promotion of promotions; track `promotion-${promotion.id}`) {
   <nz-card>
     <promotion-card [promotion]="promotion" />

@@ -8,8 +8,10 @@ type Size = 'xSmall' | 'small' | 'medium' | 'large';
   styleUrl: './grid.component.css',
   host: {
     '[attr.data-size]': 'this.size()',
+    '[class]': 'className()'
   },
 })
 export class GridComponent {
   readonly size = input<Size>('medium');
+  readonly className = input<string>('')
 }
