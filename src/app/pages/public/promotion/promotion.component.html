@@ -4,7 +4,7 @@
   }
 </nz-tabset>
 
-<promotion-filter />
+<promotion-filter [promotionType]="tabs[selectedTabIndex].type" />
 
 <app-grid>
   @for (promotion of promotions; track `promotion-${promotion.id}`) {
