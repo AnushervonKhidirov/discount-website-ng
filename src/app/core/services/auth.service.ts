@@ -10,14 +10,9 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CookieKey } from '@constant/cookie.constant';
 import { showHttpErrorMessage } from '@helper/http.helper';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(
-    private readonly http: HttpClient,
-    private readonly cookieService: CookieService,
-  ) {}
+  constructor(private readonly http: HttpClient, private readonly cookieService: CookieService) {}
 
   logIn(body: LogInModel, notification: NzNotificationService) {
     return this.http.post<TokenModel>(Endpoint.SignIn, body).pipe(

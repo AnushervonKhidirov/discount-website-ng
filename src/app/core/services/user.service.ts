@@ -7,9 +7,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Endpoint } from '@constant/endpoint.constant';
 import { showHttpErrorMessage } from '@helper/http.helper';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private readonly http: HttpClient) {}
 
