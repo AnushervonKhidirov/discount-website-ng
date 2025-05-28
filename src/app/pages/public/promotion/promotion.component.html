@@ -1,8 +1,10 @@
-<nz-tabset (nzSelectChange)="switchTab($event)" [nzSelectedIndex]="selectedIndex">
+<nz-tabset (nzSelectChange)="switchTab($event)" [nzSelectedIndex]="selectedTabIndex">
   @for (tab of tabs; track tab.href) {
   <nz-tab [nzTitle]="tab.title" />
   }
 </nz-tabset>
+
+<promotion-filter />
 
 <app-grid>
   @for (promotion of promotions; track `promotion-${promotion.id}`) {
