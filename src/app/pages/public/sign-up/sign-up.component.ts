@@ -10,8 +10,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { FormComponent } from '../../../shared/components/form/form.component';
-import { InputPasswordComponent } from '../../../shared/components/input-password/input-password.component';
+import { FormComponent } from '@component/form/form.component';
+import { InputPasswordComponent } from '@component/input-password/input-password.component';
 
 import { Page } from '@constant/page.constant';
 import { QueryUrl } from '@constant/query-url.constant';
