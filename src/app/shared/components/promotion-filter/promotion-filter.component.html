@@ -1,0 +1,33 @@
+<form nz-form (ngSubmit)="applyFilters()" [formGroup]="formGroup">
+  <nz-flex nzGap="middle">
+    <nz-form-item>
+      <nz-form-label nzLabelAlign="left">Дата начала</nz-form-label>
+      <nz-date-picker formControlName="startAt" />
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzLabelAlign="left">Дата окончания</nz-form-label>
+      <nz-date-picker formControlName="endAt" />
+    </nz-form-item>
+
+    <autocomplete
+      name="categoryId"
+      label="Категория"
+      [formGroup]="formGroup"
+      [options]="categories"
+      placeholder="Выберите категорию"
+    />
+
+    @if (promotionType() === 'CASHBACK') {
+    <autocomplete
+      name="bankId"
+      label="Банк"
+      [formGroup]="formGroup"
+      [options]="banks"
+      placeholder="Выберите Банк"
+    />
+    }
+  </nz-flex>
+
+  <button nz-button nzType="primary">Применить фильтры</button>
+</form>
