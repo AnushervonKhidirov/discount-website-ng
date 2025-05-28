@@ -22,7 +22,7 @@
   }
 
   @if (isPromoCode(promotion())) {
-    Скидка до {{ promotion().size }}% по промокоду<br />
+    Скидка {{ promotion().size }}% по промокоду<br />
     в {{ promotion().company.name }}
   }
 </h4>
