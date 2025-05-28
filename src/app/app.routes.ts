@@ -13,7 +13,7 @@ export const routes: Routes = [
     children: [
       {
         matcher: url => {
-          if (url.length === 0 && url[0].path !== 'promotions') return null;
+          if (url.length === 0 || url[0].path !== 'promotions') return null;
           const type = url[1];
           const posParams = type ? { type } : undefined;
           return { consumed: url, posParams };
