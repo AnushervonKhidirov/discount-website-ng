@@ -26,15 +26,15 @@ import { Page } from '@constant/page.constant';
 export class HeaderComponent {
   readonly menuItems: NavigationModel[] = [
     {
-      title: 'Promotions',
+      title: 'Акции',
       href: Page.Promotion,
     },
     {
-      title: 'Stores',
+      title: 'Магазины',
       href: Page.Store,
     },
     {
-      title: 'Companies',
+      title: 'Компании',
       href: Page.Company,
     },
   ];
