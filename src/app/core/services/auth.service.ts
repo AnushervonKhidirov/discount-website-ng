@@ -18,8 +18,8 @@ export class AuthService {
     return this.http.post<TokenModel>(Endpoint.SignIn, body).pipe(
       tap({
         next: ({ accessToken, refreshToken }) => {
-          this.cookieService.set(CookieKey.AccessToken, accessToken);
-          this.cookieService.set(CookieKey.RefreshToken, refreshToken);
+          this.cookieService.set(CookieKey.AccessToken, accessToken, undefined, '/');
+          this.cookieService.set(CookieKey.RefreshToken, refreshToken, undefined, '/');
         },
         error: err => showHttpErrorMessage(err, notification),
       }),
@@ -30,8 +30,8 @@ export class AuthService {
     return this.http.post<TokenModel>(Endpoint.SignUp, body).pipe(
       tap({
         next: ({ accessToken, refreshToken }) => {
-          this.cookieService.set(CookieKey.AccessToken, accessToken);
-          this.cookieService.set(CookieKey.RefreshToken, refreshToken);
+          this.cookieService.set(CookieKey.AccessToken, accessToken, undefined, '/');
+          this.cookieService.set(CookieKey.RefreshToken, refreshToken, undefined, '/');
         },
         error: err => showHttpErrorMessage(err, notification),
       }),
@@ -42,12 +42,12 @@ export class AuthService {
     return this.http.post<TokenModel>(Endpoint.RefreshToken, body).pipe(
       tap({
         next: ({ accessToken, refreshToken }) => {
-          this.cookieService.set(CookieKey.AccessToken, accessToken);
-          this.cookieService.set(CookieKey.RefreshToken, refreshToken);
+          this.cookieService.set(CookieKey.AccessToken, accessToken, undefined, '/');
+          this.cookieService.set(CookieKey.RefreshToken, refreshToken, undefined, '/');
         },
         error: () => {
-          this.cookieService.delete(CookieKey.AccessToken);
-          this.cookieService.delete(CookieKey.RefreshToken);
+          this.cookieService.delete(CookieKey.AccessToken, '/');
+          this.cookieService.delete(CookieKey.RefreshToken, '/');
         },
       }),
     );
