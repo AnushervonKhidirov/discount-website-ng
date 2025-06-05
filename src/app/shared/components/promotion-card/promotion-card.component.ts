@@ -9,6 +9,7 @@ import {
 import { Component, input } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { UploadUrlPipe } from '@core/pipes/upload-url.pipe';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
@@ -21,6 +22,7 @@ type UnknownPromotionType = DiscountModel | CashbackModel | PromoCodeModel;
   selector: 'promotion-card',
   imports: [
     UploadUrlPipe,
+    NzCardModule,
     NzButtonModule,
     NzDividerModule,
     NzSpaceModule,
