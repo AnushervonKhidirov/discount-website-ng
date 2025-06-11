@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Store } from '@ngrx/store';
@@ -17,6 +18,7 @@ import { CookieKey } from '@constant/cookie.constant';
 })
 export class AppComponent {
   constructor(
+    private readonly scroller: ViewportScroller,
     private readonly cookieService: CookieService,
     private readonly userService: UserService,
     private readonly notification: NzNotificationService,
@@ -26,6 +28,7 @@ export class AppComponent {
   isFetched = signal(false);
 
   ngOnInit() {
+    this.scroller.setHistoryScrollRestoration('manual');
     this.getUserInfo();
   }
 
