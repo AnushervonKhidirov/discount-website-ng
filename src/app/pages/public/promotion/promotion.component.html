@@ -6,10 +6,8 @@
 
 <promotion-filter [promotionType]="tabs[selectedTabIndex].type" />
 
-<app-grid className="promotion-cards-wrapper">
+<app-grid className="promotion-cards-wrapper" [loadMoreData]="getPromotions.bind(this)">
   @for (promotion of promotions; track `promotion-${promotion.id}`) {
-  <nz-card>
-    <promotion-card [promotion]="promotion" />
-  </nz-card>
+  <promotion-card [promotion]="promotion" />
   }
 </app-grid>

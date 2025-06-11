@@ -6,7 +6,6 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { PromotionService } from '@core/services/promotion.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTabsModule, NzTabChangeEvent } from 'ng-zorro-antd/tabs';
 import { GridComponent } from '@component/grid/grid.component';
 import { PromotionCardComponent } from '@component/promotion-card/promotion-card.component';
@@ -15,24 +14,13 @@ import { Page } from '@constant/page.constant';
 
 @Component({
   selector: 'app-promotion',
-  imports: [
-    NzCardModule,
-    NzTabsModule,
-    GridComponent,
-    PromotionCardComponent,
-    PromotionFilterComponent,
-  ],
+  imports: [NzTabsModule, GridComponent, PromotionCardComponent, PromotionFilterComponent],
   providers: [PromotionService, NzNotificationService],
   templateUrl: './promotion.component.html',
   styleUrl: './promotion.component.css',
 })
 export class PromotionComponent {
-  constructor(
-    private readonly promotionService: PromotionService,
-    private readonly notification: NzNotificationService,
-    private readonly router: Router,
-    private readonly route: ActivatedRoute,
-  ) {}
+  private readonly limit = 20;
 
   readonly tabs = [
     {
@@ -58,28 +46,42 @@ export class PromotionComponent {
 
   promotions: PromotionModel[] = [];
   selectedTabIndex: number = 0;
+  loadStep = 0;
+
+  constructor(
+    private readonly promotionService: PromotionService,
+    private readonly notification: NzNotificationService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
-    this.getPromotions(this.getParams());
+    this.getPromotions();
+
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
-      this.getPromotions(this.getParams());
+      this.loadStep = 0;
+      this.getPromotions();
     });
   }
 
   switchTab(e: NzTabChangeEvent) {
     const tab = this.tabs[e.index!];
+    this.promotions = [];
     this.router.navigate([tab.href], { queryParams: this.route.snapshot.queryParams });
   }
 
-  getPromotions(params?: FindParams<PromotionModel>) {
+  getPromotions() {
+    const params = this.getParams();
+
     this.promotionService.getAll(params, this.notification).subscribe(promotions => {
-      this.promotions = promotions;
+      this.promotions.push(...promotions);
+      this.loadStep += 1;
     });
   }
 
-  private getParams() {
+  getParams(): FindParams<PromotionModel> {
     const promotionType: string | undefined = this.route.snapshot.params['type'];
-    const { take, skip, ...whereParams } = this.route.snapshot.queryParams;
+    const whereParams = this.route.snapshot.queryParams;
 
     const type = promotionType
       ? this.tabs.find((tab, index) => {
@@ -93,8 +95,8 @@ export class PromotionComponent {
         type,
         ...whereParams,
       },
-      take,
-      skip,
+      take: this.limit,
+      skip: this.limit * this.loadStep,
     };
   }
 }
