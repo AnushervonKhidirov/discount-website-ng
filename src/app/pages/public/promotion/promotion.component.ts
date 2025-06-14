@@ -60,6 +60,7 @@ export class PromotionComponent {
 
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
       this.loadStep = 0;
+      this.promotions = [];
       this.getPromotions();
     });
   }
