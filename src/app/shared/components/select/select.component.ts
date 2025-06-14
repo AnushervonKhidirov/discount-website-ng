@@ -1,0 +1,28 @@
+import type { NzSelectModeType } from 'ng-zorro-antd/select';
+
+import { Component, input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+
+export type Options = {
+  id: number;
+  value: string | number;
+};
+
+@Component({
+  selector: 'app-select',
+  imports: [ReactiveFormsModule, NzFormModule, NzSelectModule],
+  templateUrl: './select.component.html',
+})
+export class SelectComponent {
+  formGroup = input.required<FormGroup>();
+  name = input.required<string>();
+  options = input.required<Options[]>();
+  label = input('');
+  placeholder = input('');
+  errorTip = input('');
+  mode = input<NzSelectModeType>('default');
+
+  listOfSelectedValue: Options[] | null = null;
+}
