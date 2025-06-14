@@ -1,4 +1,4 @@
-import type { Options } from '@component/autocomplete/autocomplete.component';
+import type { Options } from '@component/select/select.component';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
