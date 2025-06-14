@@ -23,6 +23,19 @@ export class SelectComponent {
   placeholder = input('');
   errorTip = input('');
   mode = input<NzSelectModeType>('default');
+  defaultValue = input<Option | Option[] | null>();
 
-  listOfSelectedValue: Option[] | null = null;
+  listOfSelectedValue: number | number[] | null = null;
+
+  ngOnInit() {
+    const defaultSelected = this.defaultValue();
+
+    if (defaultSelected) {
+      if (Array.isArray(defaultSelected)) {
+        this.listOfSelectedValue = defaultSelected.map(option => option.id);
+      } else {
+        this.listOfSelectedValue = defaultSelected.id;
+      }
+    }
+  }
 }
