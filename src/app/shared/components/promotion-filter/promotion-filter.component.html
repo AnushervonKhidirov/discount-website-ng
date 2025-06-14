@@ -10,21 +10,25 @@
       <nz-date-picker formControlName="endAt" />
     </nz-form-item>
 
+    @if(categories.length > 0) {
     <app-select
       name="categoryId"
       label="Категория"
       [formGroup]="formGroup"
       [options]="categories"
       placeholder="Выберите категорию"
+      [defaultValue]="getDefaultCategoryValue()"
     />
-
-    @if (promotionType() === 'CASHBACK') {
+    }
+    
+    @if (promotionType() === 'CASHBACK' && banks.length > 0) {
     <app-select
       name="bankId"
       label="Банк"
       [formGroup]="formGroup"
       [options]="banks"
-      placeholder="Выберите Банк"
+      placeholder="Выберите Банкs"
+      [defaultValue]="getDefaultBankValue()"
     />
     }
   </nz-flex>

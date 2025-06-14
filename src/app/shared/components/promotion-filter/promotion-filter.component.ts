@@ -103,7 +103,7 @@ export class PromotionFilterComponent {
     return endAt ? new Date(endAt) : null;
   }
 
-  private getDefaultBankValue(bankName?: string) {
+  getDefaultBankValue(bankName?: string) {
     if (bankName) {
       return this.banks.find(bank => bank.value === bankName) ?? null;
     }
@@ -113,7 +113,7 @@ export class PromotionFilterComponent {
     return this.banks.find(bank => bank.id === +bankId) ?? null;
   }
 
-  private getDefaultCategoryValue(categoryName?: string) {
+  getDefaultCategoryValue(categoryName?: string) {
     if (categoryName) {
       return this.categories.find(category => category.value === categoryName) ?? null;
     }
