@@ -17,7 +17,7 @@ export class FormComponent {
   formGroup = input.required<FormGroup>();
   submitFn = input.required<() => void>();
   headline = input<string>();
-  btnName = input<string>('Submit');
+  btnName = input<string>('Отправить');
 
   submitForm() {
     if (this.formGroup().valid) {
