@@ -13,7 +13,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { AutocompleteComponent } from '@component/autocomplete/autocomplete.component';
+import { SelectComponent } from '@component/select/select.component';
 import { BankService } from '@core/services/bank.service';
 import { CategoryService } from '@core/services/category.service';
 import { PromotionType } from '@core/models/promotion.model';
@@ -31,7 +31,7 @@ import { PromotionType } from '@core/models/promotion.model';
     NzDatePickerModule,
     NzIconModule,
     NzButtonModule,
-    AutocompleteComponent,
+    SelectComponent,
   ],
   providers: [BankService],
   templateUrl: './promotion-filter.component.html',

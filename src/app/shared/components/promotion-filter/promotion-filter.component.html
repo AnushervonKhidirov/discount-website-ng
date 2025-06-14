@@ -10,7 +10,7 @@
       <nz-date-picker formControlName="endAt" />
     </nz-form-item>
 
-    <autocomplete
+    <app-select
       name="categoryId"
       label="Категория"
       [formGroup]="formGroup"
@@ -19,7 +19,7 @@
     />
 
     @if (promotionType() === 'CASHBACK') {
-    <autocomplete
+    <app-select
       name="bankId"
       label="Банк"
       [formGroup]="formGroup"
