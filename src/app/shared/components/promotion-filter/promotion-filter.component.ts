@@ -1,4 +1,4 @@
-import type { Options } from '@component/select/select.component';
+import type { Option } from '@component/select/select.component';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
@@ -55,8 +55,8 @@ export class PromotionFilterComponent {
 
   readonly promotionType = input<PromotionType>();
 
-  banks: Options[] = [];
-  categories: Options[] = [];
+  banks: Option[] = [];
+  categories: Option[] = [];
 
   applyFilters() {
     const queryParams = this.getQueryParamsFromForm();

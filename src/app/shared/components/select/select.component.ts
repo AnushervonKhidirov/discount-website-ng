@@ -5,7 +5,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 
-export type Options = {
+export type Option = {
   id: number;
   value: string | number;
 };
@@ -18,11 +18,11 @@ export type Options = {
 export class SelectComponent {
   formGroup = input.required<FormGroup>();
   name = input.required<string>();
-  options = input.required<Options[]>();
+  options = input.required<Option[]>();
   label = input('');
   placeholder = input('');
   errorTip = input('');
   mode = input<NzSelectModeType>('default');
 
-  listOfSelectedValue: Options[] | null = null;
+  listOfSelectedValue: Option[] | null = null;
 }
