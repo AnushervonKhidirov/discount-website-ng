@@ -37,6 +37,10 @@ h6 {
   line-height: 1.25 !important;
 }
 
+nz-list {
+  border-color: #f0f0f0 !important;
+}
+
 @media screen and (min-width: 1024px) {
 }
 
