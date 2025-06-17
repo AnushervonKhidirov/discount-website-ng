@@ -16,8 +16,9 @@ export type CompanyModel = {
   countries: CountryModel[];
 };
 
-export type CreateCompanyModel = Pick<CompanyModel, 'name' | 'about' | 'categoryId'> & {
+export type CreateCompanyModel = Pick<CompanyModel, 'name' | 'categoryId'> & {
   countryIds: number[];
+  about?: string
 };
 
 export type UpdateCompanyModel = Partial<
