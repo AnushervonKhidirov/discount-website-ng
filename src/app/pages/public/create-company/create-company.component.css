@@ -1,0 +1,24 @@
+:host {
+  display: grid;
+  height: 100%;
+  grid-template-areas: 'content' 'steps';
+  grid-template-rows: 1fr max-content;
+  gap: 2rem;
+}
+
+app-form {
+  grid-area: content;
+}
+
+nz-steps {
+  grid-area: steps;
+}
+
+.upload-logo-step {
+  grid-template-columns: 1fr;
+}
+
+.finish-button {
+  grid-column: 1/4;
+  justify-self: self-end;
+}

@@ -1,0 +1,69 @@
+@if(currentStep === 0) {
+<app-form [formGroup]="createCompanyValidation" [submitFn]="createCompany.bind(this)">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Пожалуйста введите название компании!">
+      <input nz-input type="text" formControlName="name" placeholder="Название компании" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <textarea nz-input formControlName="about" placeholder="Информация о компании"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <app-select
+    [formGroup]="createCompanyValidation"
+    name="categoryId"
+    [options]="categories"
+    placeholder="Выберите категорию"
+    errorTip="Пожалуйста выберите категорию!"
+  />
+
+  <app-select
+    [formGroup]="createCompanyValidation"
+    name="countryIds"
+    [options]="countries"
+    placeholder="Выберите страну/страны"
+    errorTip="Пожалуйста выберите хотя-бы одну страну!"
+    mode="multiple"
+  />
+</app-form>
+} @if(currentStep === 1 && companyData) {
+<app-grid>
+  <nz-card nzTitle="Название">{{ companyData.name }}</nz-card>
+  <nz-card nzTitle="Категория">{{ companyData.category.value }}</nz-card>
+  <nz-card nzTitle="О компании">{{ companyData.about ?? '-' }}</nz-card>
+
+  <nz-list style="grid-column: 1/4" nzHeader="Выбранные страны" nzBordered>
+    @for (country of companyData.countries; track country.id) {
+    <nz-list-item>{{ country.value }}</nz-list-item>
+    }
+  </nz-list>
+
+  <nz-upload
+    nzName="file"
+    nzListType="picture-card"
+    [nzShowUploadList]="true"
+    [nzCustomRequest]="uploadImage.bind(this)"
+    style="grid-column: 1/4"
+  >
+    <nz-icon class="upload-icon" nzType="plus" />
+    <div class="ant-upload-text">Upload</div>
+  </nz-upload>
+
+  <button class="finish-button" nz-button nzType="primary" (click)="navigateToCompaniesPage()">
+    @if(companyData.logoUrl) {
+      Далее
+    } @else {
+      Пропустить
+    }
+  </button>
+</app-grid>
+
+}
+
+<nz-steps [nzCurrent]="currentStep">
+  <nz-step nzTitle="Создание компании"></nz-step>
+  <nz-step nzTitle="Загрузка логотипа"></nz-step>
+</nz-steps>
