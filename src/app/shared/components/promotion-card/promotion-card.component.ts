@@ -34,7 +34,7 @@ type UnknownPromotionType = DiscountModel | CashbackModel | PromoCodeModel;
 })
 export class PromotionCardComponent {
   readonly promotion = input.required<PromotionModel>();
-  showRating = true;
+  showRating = false;
   isPromoVisible = false;
 
   formatDate(date: Date) {
