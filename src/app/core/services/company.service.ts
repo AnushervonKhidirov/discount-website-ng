@@ -1,3 +1,5 @@
+import type { FindParams } from '@core/models/http.model';
+
 import type {
   CompanyModel,
   CreateCompanyModel,
@@ -9,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Endpoint } from '@constant/endpoint.constant';
 import { tap } from 'rxjs';
-import { showHttpErrorMessage } from '@helper/http.helper';
+import { convertFindParams, showHttpErrorMessage } from '@helper/http.helper';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {
@@ -23,12 +25,14 @@ export class CompanyService {
     );
   }
 
-  getAll(notification?: NzNotificationService) {
-    return this.http.get<CompanyModel[]>(Endpoint.Companies).pipe(
-      tap({
-        error: err => showHttpErrorMessage(err, notification),
-      }),
-    );
+  getAll(params?: FindParams<CompanyModel>, notification?: NzNotificationService) {
+    return this.http
+      .get<CompanyModel[]>(Endpoint.Companies, { params: convertFindParams(params) })
+      .pipe(
+        tap({
+          error: err => showHttpErrorMessage(err, notification),
+        }),
+      );
   }
 
   create(createCompanyModel: CreateCompanyModel, notification?: NzNotificationService) {
