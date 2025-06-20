@@ -2,11 +2,17 @@
   @if(promotion().company.logoUrl || promotion().bank?.logoUrl) {
   <div class="logos">
     @if (promotion().company.logoUrl) {
-    <img [src]="promotion().company.logoUrl! | uploadUrl" [alt]="promotion().company.name" class="company-logo" />
-    }
-    
-    @if (promotion().bank?.logoUrl) {
-    <img [src]="promotion().bank!.logoUrl! | uploadUrl" [alt]="promotion().bank!.name" class="bank-logo" />
+    <img
+      [src]="promotion().company.logoUrl! | uploadUrl"
+      [alt]="promotion().company.name"
+      class="company-logo"
+    />
+    } @if (promotion().bank?.logoUrl) {
+    <img
+      [src]="promotion().bank!.logoUrl! | uploadUrl"
+      [alt]="promotion().bank!.name"
+      class="bank-logo"
+    />
     }
   </div>
 
@@ -14,17 +20,11 @@
   }
 
   <h4 nz-typography>
-    @if (isDiscount(promotion())) {
-      Скидка до {{ promotion().size }}% в {{ promotion().company.name }}
-    }
-
-    @if (isCashback(promotion())) {
-      Кэшбек {{ promotion().size }}% в {{ promotion().company.name }}
-    }
-
-    @if (isPromoCode(promotion())) {
-      Скидка {{ promotion().size }}% по промокоду<br />
-      в {{ promotion().company.name }}
+    @if (isDiscount(promotion())) { Скидка до {{ promotion().size }}% в
+    {{ promotion().company.name }} } @if (isCashback(promotion())) { Кэшбек {{ promotion().size }}%
+    в {{ promotion().company.name }} } @if (isPromoCode(promotion())) { Скидка
+    {{ promotion().size }}% по промокоду<br />
+    в {{ promotion().company.name }}
     }
   </h4>
 
@@ -46,6 +46,7 @@
     </div>
   </div>
 
+  @if (showRating || isPromoCode(promotion())) {
   <nz-divider />
 
   <nz-space nzSize="middle" nzDirection="vertical">
@@ -58,7 +59,8 @@
       }
     </div>
     }
-
+    
+    @if(showRating) {
     <app-rating
       *nzSpaceItem
       [message]="`Рейтинг ${promotion().company.name}`"
@@ -66,5 +68,7 @@
       [reviews]="promotion().company.review"
       [disabled]="true"
     />
+    }
   </nz-space>
+  }
 </nz-card>
