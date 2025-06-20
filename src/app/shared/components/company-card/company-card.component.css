@@ -1,0 +1,31 @@
+nz-card {
+  height: 100%;
+}
+
+::ng-deep nz-card .ant-card-body {
+  display: grid;
+  height: 100%;
+  grid-template-areas: 'header' 'info';
+  grid-template-rows: max-content 1fr;
+}
+
+::ng-deep nz-card .ant-card-body:has(.footer) {
+  grid-template-areas: 'header' 'info' 'footer';
+  grid-template-rows: max-content 1fr max-content;
+}
+
+.header {
+  grid-area: header;
+}
+
+.company-logo {
+  height: 2.5rem;
+}
+
+.info {
+  grid-area: info;
+}
+
+.footer {
+  grid-area: footer;
+}

@@ -1,0 +1,44 @@
+<nz-card>
+  <div class="header">
+    @if (company().logoUrl) {
+    <img [src]="company().logoUrl! | uploadUrl" [alt]="company().name" class="company-logo" />
+    } @else {
+    <h2 nz-typography class="">{{ company().name }}</h2>
+    }
+
+    <nz-divider />
+  </div>
+
+  <div class="info">
+    @if(company().about) {
+    <h4 nz-typography>О компании:</h4>
+    <div>{{ company().about }}</div>
+    }
+
+    <div class="category">
+      <h4 nz-typography>Категория:</h4>
+      <div>{{ company().category.value }}</div>
+    </div>
+
+    <div class="coutries">
+      <h4 nz-typography>Страны:</h4>
+
+      <ul class="country-list">
+        @for (country of company().countries; track country.id) {
+        <li>{{ country.value }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  @if(showRating()) {
+  <div class="footer">
+    <nz-divider />
+    <app-rating
+      [value]="company().rating"
+      [reviews]="company().review"
+      message="Рейтинг компании:"
+    />
+  </div>
+  }
+</nz-card>
