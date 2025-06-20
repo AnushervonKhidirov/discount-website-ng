@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { AuthGuard } from '@core/guards/auth.guard';
+
 import { HeaderComponent } from '@layout/header/header.component';
 
 import { LogInComponent } from '@page/public/log-in/log-in.component';
@@ -37,10 +39,16 @@ export const routes: Routes = [
           {
             path: 'create',
             component: CreateCompanyComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'my',
+            component: CompanyComponent,
+            canActivate: [AuthGuard],
           },
           {
             path: ':id',
-            component: CompanyComponent,
+            component: CompanyComponent, // NOTE: user specific component page
           },
         ],
       },
