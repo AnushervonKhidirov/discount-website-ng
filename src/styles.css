@@ -37,6 +37,10 @@ h6 {
   line-height: 1.25 !important;
 }
 
+ul {
+  list-style-type: none;
+}
+
 nz-list {
   border-color: #f0f0f0 !important;
 }
