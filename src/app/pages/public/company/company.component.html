@@ -1,0 +1,5 @@
+<app-grid>
+  @for (company of companies; track company.id) {
+  <company-card [company]="company" [showRating]="showRating" />
+  }
+</app-grid>
