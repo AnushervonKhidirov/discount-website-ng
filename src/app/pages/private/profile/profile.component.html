@@ -1,0 +1,56 @@
+<section>
+  <h2 nz-typography>Данные пользователя</h2>
+
+  @if(user) {
+  <table>
+    <tbody>
+      <tr>
+        <td>ID:</td>
+        <td>{{ user.id }}</td>
+      </tr>
+
+      <tr>
+        <td>Username:</td>
+        <td>{{ user.username }}</td>
+      </tr>
+
+      <tr>
+        <td>Имя:</td>
+        <td>{{ user.firstName ?? '-' }}</td>
+      </tr>
+
+      <tr>
+        <td>Фамилия:</td>
+        <td>{{ user.lastName ?? '-' }}</td>
+      </tr>
+
+      <tr>
+        <td>Роль:</td>
+        <td>{{ user.role | role }}</td>
+      </tr>
+
+      <tr>
+        <td>Зарегестрирован в:</td>
+        <td>{{ user.createdAt | date : 'mediumDate' : '' : 'ru' }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  }
+</section>
+
+<section>
+  <h2 nz-typography>Компании</h2>
+
+  @if(user && user.companies) {
+  <app-grid>
+    @for (company of user.companies; track company.id) {
+    <company-card [company]="company" [showRating]="true" />
+    }
+  </app-grid>
+  } @else {
+  <nz-empty [nzNotFoundContent]="contentTpl">
+    <ng-template #contentTpl>У вас еще нет компаний</ng-template>
+  </nz-empty>
+  }
+</section>

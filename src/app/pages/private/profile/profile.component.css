@@ -1,0 +1,12 @@
+:host {
+  display: grid;
+  gap: 4rem;
+}
+
+table {
+  font-size: 1.25rem;
+}
+
+table td {
+  padding-right: 2em;
+}
