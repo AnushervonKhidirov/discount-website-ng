@@ -7,7 +7,7 @@ import {
 } from '@core/models/promotion.model';
 
 import { Component, input } from '@angular/core';
-import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { UploadUrlPipe } from '@core/pipes/upload-url.pipe';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -28,17 +28,19 @@ type UnknownPromotionType = DiscountModel | CashbackModel | PromoCodeModel;
     NzSpaceModule,
     NzTypographyModule,
     RatingComponent,
+    DatePipe,
   ],
   templateUrl: './promotion-card.component.html',
   styleUrl: './promotion-card.component.css',
 })
 export class PromotionCardComponent {
   readonly promotion = input.required<PromotionModel>();
+  promotionItem: PromotionModel | null = null;
   showRating = false;
   isPromoVisible = false;
 
-  formatDate(date: Date) {
-    return formatDate(date, 'dd/MM/YYY', 'en');
+  ngOnInit() {
+    this.promotionItem = this.promotion();
   }
 
   showPromoCode() {

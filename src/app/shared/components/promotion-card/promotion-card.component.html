@@ -1,16 +1,18 @@
+@if(promotionItem) {
 <nz-card>
-  @if(promotion().company.logoUrl || promotion().bank?.logoUrl) {
+  @if(promotionItem.company.logoUrl || promotionItem.bank?.logoUrl) {
   <div class="logos">
-    @if (promotion().company.logoUrl) {
+    @if (promotionItem.company.logoUrl) {
     <img
-      [src]="promotion().company.logoUrl! | uploadUrl"
-      [alt]="promotion().company.name"
+      [src]="promotionItem.company.logoUrl! | uploadUrl"
+      [alt]="promotionItem.company.name"
       class="company-logo"
     />
-    } @if (promotion().bank?.logoUrl) {
+    }
+    @if (promotionItem.bank?.logoUrl) {
     <img
-      [src]="promotion().bank!.logoUrl! | uploadUrl"
-      [alt]="promotion().bank!.name"
+      [src]="promotionItem.bank!.logoUrl! | uploadUrl"
+      [alt]="promotionItem.bank!.name"
       class="bank-logo"
     />
     }
@@ -20,19 +22,25 @@
   }
 
   <h4 nz-typography>
-    @if (isDiscount(promotion())) { Скидка до {{ promotion().size }}% в
-    {{ promotion().company.name }} } @if (isCashback(promotion())) { Кэшбек {{ promotion().size }}%
-    в {{ promotion().company.name }} } @if (isPromoCode(promotion())) { Скидка
-    {{ promotion().size }}% по промокоду<br />
-    в {{ promotion().company.name }}
+    @if (isDiscount(promotionItem)) {
+    Скидка до {{ promotionItem.size }}% в {{ promotionItem.company.name }}
+    }
+    
+    @if (isCashback(promotionItem)) {
+    Кэшбек {{ promotionItem.size }}% в {{ promotionItem.company.name }}
+    }
+    
+    @if (isPromoCode(promotionItem))
+    { Скидка {{ promotionItem.size }}% по промокоду<br />
+    в {{ promotionItem.company.name }}
     }
   </h4>
 
-  <div class="company">Магазин: {{ promotion().company.name }}</div>
-  <div class="category">Категория: {{ promotion().company.category.value }}</div>
+  <div class="company">Магазин: {{ promotionItem.company.name }}</div>
+  <div class="category">Категория: {{ promotionItem.company.category.value }}</div>
 
-  @if (isCashback(promotion())) {
-  <div class="bank">Банк: {{ promotion().bank!.name }}</div>
+  @if (isCashback(promotionItem)) {
+  <div class="bank">Банк: {{ promotionItem.bank!.name }}</div>
   }
 
   <nz-divider />
@@ -41,21 +49,22 @@
     <div>Срок действия:</div>
 
     <div>
-      С <b>{{ formatDate(promotion().startAt) }}</b> по
-      <b>{{ formatDate(promotion().endAt) }}</b>
+      С
+      <b>{{ promotionItem.startAt | date : 'mediumDate' : '' : 'ru' }}</b> по
+      <b>{{ promotionItem.endAt | date : 'mediumDate' : '' : 'ru' }}</b>
     </div>
   </div>
 
-  @if (showRating || isPromoCode(promotion())) {
+  @if (showRating || isPromoCode(promotionItem)) {
   <nz-divider />
 
   <nz-space nzSize="middle" nzDirection="vertical">
-    @if (isPromoCode(promotion())) {
+    @if (isPromoCode(promotionItem)) {
     <div class="promo-btn-value" *nzSpaceItem>
       <button nz-button nzType="primary" (click)="showPromoCode()">Показать промокод!</button>
 
       @if(isPromoVisible) {
-      <span nz-typography class="promo-value">{{ promotion().promoCode }}</span>
+      <span nz-typography class="promo-value">{{ promotionItem.promoCode }}</span>
       }
     </div>
     }
@@ -63,12 +72,13 @@
     @if(showRating) {
     <app-rating
       *nzSpaceItem
-      [message]="`Рейтинг ${promotion().company.name}`"
-      [value]="promotion().company.rating"
-      [reviews]="promotion().company.review"
+      [message]="`Рейтинг ${promotionItem.company.name}`"
+      [value]="promotionItem.company.rating"
+      [reviews]="promotionItem.company.review"
       [disabled]="true"
     />
     }
   </nz-space>
   }
 </nz-card>
+}
