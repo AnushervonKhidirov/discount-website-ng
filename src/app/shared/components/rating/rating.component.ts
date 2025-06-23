@@ -9,10 +9,10 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
   styleUrl: './rating.component.css',
 })
 export class RatingComponent {
-  message = input<string>();
-  value = input<number>(0);
-  reviews = input<number>(0);
-  disabled = input<boolean>(false);
+  readonly message = input<string>();
+  readonly value = input<number>(0);
+  readonly reviews = input<number>(0);
+  readonly disabled = input<boolean>(false);
   stars: number = 0
 
   ngOnInit() {

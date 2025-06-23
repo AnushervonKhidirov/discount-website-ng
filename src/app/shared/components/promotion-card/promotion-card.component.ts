@@ -35,8 +35,8 @@ type UnknownPromotionType = DiscountModel | CashbackModel | PromoCodeModel;
 })
 export class PromotionCardComponent {
   readonly promotion = input.required<PromotionModel>();
+  readonly showRating = false;
   promotionItem: PromotionModel | null = null;
-  showRating = false;
   isPromoVisible = false;
 
   ngOnInit() {

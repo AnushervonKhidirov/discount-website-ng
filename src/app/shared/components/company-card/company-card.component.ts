@@ -15,6 +15,11 @@ import { UploadUrlPipe } from '@core/pipes/upload-url.pipe';
   styleUrl: './company-card.component.css',
 })
 export class CompanyCardComponent {
-  company = input.required<CompanyModel>();
-  showRating = input(false);
+  readonly company = input.required<CompanyModel>();
+  readonly showRating = input(false);
+  companyData: CompanyModel | null = null;
+
+  ngOnInit() {
+    this.companyData = this.company();
+  }
 }

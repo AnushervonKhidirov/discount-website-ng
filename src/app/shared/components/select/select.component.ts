@@ -16,14 +16,14 @@ export type Option = {
   templateUrl: './select.component.html',
 })
 export class SelectComponent {
-  formGroup = input.required<FormGroup>();
-  name = input.required<string>();
-  options = input.required<Option[]>();
-  label = input('');
-  placeholder = input('');
-  errorTip = input('');
-  mode = input<NzSelectModeType>('default');
-  defaultValue = input<Option | Option[] | null>();
+  readonly formGroup = input.required<FormGroup>();
+  readonly name = input.required<string>();
+  readonly options = input.required<Option[]>();
+  readonly label = input('');
+  readonly placeholder = input('');
+  readonly errorTip = input('');
+  readonly mode = input<NzSelectModeType>('default');
+  readonly defaultValue = input<Option | Option[] | null>();
 
   listOfSelectedValue: number | number[] | null = null;
 

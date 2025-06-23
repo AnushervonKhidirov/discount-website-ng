@@ -14,10 +14,10 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  formGroup = input.required<FormGroup>();
-  submitFn = input.required<() => void>();
-  headline = input<string>();
-  btnName = input<string>('Отправить');
+  readonly formGroup = input.required<FormGroup>();
+  readonly submitFn = input.required<() => void>();
+  readonly headline = input<string>();
+  readonly btnName = input<string>('Отправить');
 
   submitForm() {
     if (this.formGroup().valid) {

@@ -12,10 +12,10 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   styleUrl: './input-password.component.css',
 })
 export class InputPasswordComponent {
-  formGroup = input.required<FormGroup>();
-  name = input.required<string>();
-  nzErrorTip = input.required<string>();
-  placeholder = input('Password');
+  readonly formGroup = input.required<FormGroup>();
+  readonly name = input.required<string>();
+  readonly nzErrorTip = input.required<string>();
+  readonly placeholder = input('Password');
   passwordVisible = signal(false);
 
   switchVisibility() {
