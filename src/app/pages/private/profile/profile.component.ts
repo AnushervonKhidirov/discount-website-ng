@@ -33,7 +33,6 @@ export class ProfileComponent {
   ngOnInit() {
     this.store.select(selectUser).subscribe(userStore => {
       this.user = userStore.user;
-      console.log(this.user);
     });
   }
 }
