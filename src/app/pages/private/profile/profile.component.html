@@ -1,7 +1,7 @@
+@if(user) {
 <section>
   <h2 nz-typography>Данные пользователя</h2>
 
-  @if(user) {
   <table>
     <tbody>
       <tr>
@@ -36,21 +36,21 @@
       </tr>
     </tbody>
   </table>
-  }
 </section>
 
 <section>
   <h2 nz-typography>Компании</h2>
 
-  @if(user && user.companies) {
+  @if(user.companies) {
   <app-grid>
     @for (company of user.companies; track company.id) {
-    <company-card [company]="company" [showRating]="true" />
+    <company-card [company]="company" [cardHandler]="cardHandler.bind(this)" [showRating]="true" />
     }
   </app-grid>
   } @else {
   <nz-empty [nzNotFoundContent]="contentTpl">
-    <ng-template #contentTpl>У вас еще нет компаний</ng-template>
+    <ng-template #contentTpl>У вас еще нет компании</ng-template>
   </nz-empty>
   }
 </section>
+}
