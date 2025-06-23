@@ -8,6 +8,8 @@ export type UserModel = {
   role: Role;
   archived: boolean;
   companies: CompanyModel[] | null;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type UpdateUserModel = Pick<UserModel, 'username' | 'role' | 'archived'>;

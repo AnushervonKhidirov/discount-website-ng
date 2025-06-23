@@ -14,6 +14,10 @@ export class UserService {
   getMyInfo(notification?: NzNotificationService) {
     return this.http.get<UserModel>(Endpoint.UserMe).pipe(
       tap({
+        next: user => {
+          user.createdAt = new Date(user.createdAt);
+          user.updatedAt = new Date(user.updatedAt);
+        },
         error: err => showHttpErrorMessage(err, notification),
       }),
     );
