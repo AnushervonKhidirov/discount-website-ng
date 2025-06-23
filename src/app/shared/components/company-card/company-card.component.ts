@@ -17,8 +17,4 @@ import { UploadUrlPipe } from '@core/pipes/upload-url.pipe';
 export class CompanyCardComponent {
   company = input.required<CompanyModel>();
   showRating = input(false);
-
-  ngOnInit() {
-    console.log(this.company());
-  }
 }
