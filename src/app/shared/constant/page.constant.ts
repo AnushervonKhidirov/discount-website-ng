@@ -9,10 +9,10 @@ export enum Page {
   PromoCode = '/promotions/promo-codes',
 
   Profile = '/profile',
-  MyCompanies = '/companies/my',
-  MyStores = '/stores/my',
-  CreateCompany = '/companies/create',
-  CreateStore = '/stores/create',
+  MyCompanies = 'profile/companies',
+  MyStores = 'profile/stores',
+  CreateCompany = 'profile/companies/create',
+  CreateStore = 'profile/stores/create',
 
   LogIn = '/log-in',
   SignUp = '/sign-up',
