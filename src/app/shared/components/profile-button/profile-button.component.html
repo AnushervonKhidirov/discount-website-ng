@@ -1,7 +1,7 @@
 <button nz-button nz-dropdown [nzDropdownMenu]="menu" class="profile_btn">
-  <nz-avatar nzIcon="user" nzShape="circle" class="avatar" />
+  <nz-avatar nzIcon="user" nzShape="square" class="avatar" />
   <div class="username">{{ getUsername() }}</div>
-  <div class="role">{{ getRole() }}</div>
+  <div class="role">{{ user!.role | role }}</div>
 </button>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">

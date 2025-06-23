@@ -10,6 +10,7 @@
   justify-items: start;
   align-items: center;
   gap: 0 1em;
+  line-height: 1.2;
   padding: 0.5em 1em;
 }
 
@@ -24,5 +25,4 @@
 .role {
   grid-area: role;
   font-size: 0.8em;
-  text-transform: capitalize;
 }

@@ -6,11 +6,19 @@ import { NzDropDownModule, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdow
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
+import { RolePipe } from '@core/pipes/role.pipe';
 import { Page } from '@constant/page.constant';
 
 @Component({
   selector: 'app-profile-button',
-  imports: [RouterLink, NzDropDownModule, NzDropdownMenuComponent, NzButtonModule, NzAvatarModule],
+  imports: [
+    RouterLink,
+    NzDropDownModule,
+    NzDropdownMenuComponent,
+    NzButtonModule,
+    NzAvatarModule,
+    RolePipe,
+  ],
   templateUrl: './profile-button.component.html',
   styleUrl: './profile-button.component.css',
 })
@@ -43,11 +51,6 @@ export class ProfileButtonComponent {
   getUsername() {
     if (!this.user) return '';
     return this.user.firstName ?? this.user.username;
-  }
-
-  getRole() {
-    if (!this.user) return '';
-    return this.user.role.replaceAll('_', ' ').toLowerCase();
   }
 
   isCompanyOwner() {
