@@ -1,4 +1,3 @@
-import type { UserModel } from '@core/models/user.model';
 import type { CompanyModel } from '@core/models/company.model';
 
 import { Component } from '@angular/core';
@@ -25,17 +24,15 @@ export class CompanyComponent {
   ) {}
 
   companies: CompanyModel[] = [];
-  user: UserModel | null = null;
   showRating = false;
 
   ngOnInit() {
-    const path = this.route.routeConfig;
+    const isProfile = <boolean>this.route.routeConfig?.data?.['profile'] ?? false;
 
-    if (path && path.path === 'my') {
+    if (isProfile) {
       this.store.select(selectUser).subscribe(userStore => {
-        this.user = userStore.user;
         this.showRating = true;
-        if (this.user?.companies) this.companies = this.user.companies;
+        if (userStore.user?.companies) this.companies = userStore.user.companies;
       });
     } else {
       this.companyService.getAll().subscribe({
