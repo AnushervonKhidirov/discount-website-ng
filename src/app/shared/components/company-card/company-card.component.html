@@ -1,5 +1,5 @@
 @if(companyData) {
-<nz-card>
+<nz-card [nzHoverable]="isHoverable" (click)="handler()">
   <div class="header">
     @if (companyData.logoUrl) {
     <img [src]="companyData.logoUrl! | uploadUrl" [alt]="companyData.name" class="company-logo" />
@@ -38,6 +38,7 @@
     <app-rating
       [value]="companyData.rating"
       [reviews]="companyData.review"
+      [disabled]="true"
       message="Рейтинг компании:"
     />
   </div>
